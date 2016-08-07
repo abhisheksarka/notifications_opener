@@ -1,8 +1,6 @@
-# NotificationsOpener
+# Notifications Opener
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/notifications_opener`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Blocks SMSs from being delivered in development. Instead opens a preview in the browser by intercepting the request to the configured SMS API.
 
 ## Installation
 
@@ -22,7 +20,29 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Add the following configuration in your `development.rb`. The following is an example for springedge. It will probably differ based on your provider.
+
+```ruby
+# Blocks SMSs from being delivered in development
+# Instead opens a preview in the browser by intercepting the request to
+# the configured SMS API
+NotificationsOpener.configure do | c |
+  # Param name for the sender that will be passed to the SMS API
+  c[:from_key_name] = "sender"
+
+  # Param name for the receiver that will be passed to the SMS API
+  c[:to_key_name] = "to"
+
+  # Param name for the message that will be passed to the API
+  c[:message_key_name] = "message"
+
+  # Location to store the preview email files, usually tmp
+  c[:location] = Rails.root.join("tmp").to_s
+
+  # The SMS API call to intercept
+  c[:url] = /.*alerts.springedge.com.*/
+end
+```
 
 ## Development
 
@@ -32,4 +52,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/notifications_opener. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/abhisheksarka/notifications_opener. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
