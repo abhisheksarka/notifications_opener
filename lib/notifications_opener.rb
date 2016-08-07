@@ -15,8 +15,7 @@ module NotificationsOpener
   private
 
   def self.create_storage_directory(c)
-    dir = c[:location] + '/notifications_opener'
-    FileUtils.mkdir_p(dir)
-    c[:location] = dir
+    c[:location] += '/notifications_opener'
+    FileUtils.mkdir_p(c[:location])
   end
 end
