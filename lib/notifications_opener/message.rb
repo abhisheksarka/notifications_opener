@@ -7,7 +7,8 @@ module NotificationsOpener
                   :from,
                   :to,
                   :message,
-                  :location
+                  :location,
+                  :file_path
 
     def initialize(config)
       @config = config
@@ -16,12 +17,12 @@ module NotificationsOpener
       @message = config[:message]
 
       @location = config[:location]
+      @file_path = get_file_path
     end
 
     def deliver
-      path = get_file_path
-      File.open(path, 'w') { | file | file.write(rendered_content) }
-      Launchy.open("file:///#{URI.parse(path)}")
+      File.open(file_path, 'w') { | file | file.write(rendered_content) }
+      Launchy.open("file:///#{URI.parse(file_path)}")
     end
 
     def template
