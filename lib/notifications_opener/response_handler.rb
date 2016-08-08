@@ -1,3 +1,7 @@
+##
+# The (instance of)class represents a Rack application
+# Responsible to handle a stubbed request manually
+
 module NotificationsOpener
   class ResponseHandler
     attr_accessor :config,

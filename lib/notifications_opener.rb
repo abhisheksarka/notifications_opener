@@ -5,11 +5,22 @@ require "notifications_opener/interceptor"
 require 'fileutils'
 
 module NotificationsOpener
+
+  # #
+  # Configure the module by passing required options
+  #
+  # * url - The SMS API URL
+  # * location - Generated preview files will stored here, usually tmp
+  # * from_key_name - The parameter name you pass to the SMS API that identifies the sender
+  # * to_key_name - The parameter name you pass to the SMS API that identifies the receiver
+  # * message_key_name - The parameter name you pass to the SMS API that identifies the message
   def self.configure
     c = { }
     yield(c)
     create_storage_directory(c)
     ins = Interceptor.new(c)
+    ins.intercept_and_redirect_to_rack_app
+    ins
   end
 
   private
