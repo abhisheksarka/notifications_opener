@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/notifications_opener.svg)](http://badge.fury.io/rb/notifications_opener)
+
 # Notifications Opener
 
 Blocks SMSs from being delivered in development. Instead opens a preview in the browser by intercepting the request to the configured SMS API.
