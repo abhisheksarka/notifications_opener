@@ -1,8 +1,7 @@
-##
-# The (instance of)class represents a Rack application
-# Responsible to handle a stubbed request manually
-
 module NotificationsOpener
+  ##
+  # The (instance of)class represents a Rack application
+  # Responsible to handle a stubbed request manually
   class ResponseHandler
     attr_accessor :config,
                   :message
@@ -12,10 +11,11 @@ module NotificationsOpener
     end
 
     def call(env)
-      @message = NotificationsOpener::Message.new(get_required_params(env['QUERY_STRING']))
+      message_params = get_required_params(env['QUERY_STRING'])
+      @message = NotificationsOpener::Message.new(message_params)
       message.deliver
 
-      [200, { }, [ ]]
+      [200, {}, []]
     end
 
     private
@@ -31,12 +31,11 @@ module NotificationsOpener
     end
 
     def get_params_from_query_string(q)
-      p = { }
-      q.split('&').each do | kv |
+      p = {}
+      q.split('&').each do |kv|
         kv = kv.split('=')
         p[kv[0]] = kv[1]
       end
-      p p
       p
     end
   end

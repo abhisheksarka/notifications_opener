@@ -1,10 +1,5 @@
-##
-# This class represents as an interceptor for the HTTP requests to the
-# specified URL
-
 require 'webmock'
 require 'rack'
-
 ##
 # On requiring webmock it disables HTTP connections by default
 # so we need to call this method after requiring it, since we only
@@ -12,6 +7,9 @@ require 'rack'
 WebMock.allow_net_connect!
 
 module NotificationsOpener
+  ##
+  # This class represents as an interceptor for the HTTP requests to the
+  # specified URL
   class Interceptor
     attr_accessor :config,
                   :response_handler

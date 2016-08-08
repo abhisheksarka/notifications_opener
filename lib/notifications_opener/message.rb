@@ -1,10 +1,9 @@
-##
-# This class represents builds a usable message based on the parameters
-
 require 'erb'
 require 'launchy'
 
 module NotificationsOpener
+  ##
+  # This class represents builds a usable message based on the parameters
   class Message
     attr_accessor :config,
                   :from,
@@ -20,14 +19,14 @@ module NotificationsOpener
       @message = config[:message]
 
       @location = config[:location]
-      @file_path = get_file_path
+      @file_path = generate_file_path
     end
 
     # #
     # Creates the file with the interpolated content in the specified location
     # Opens it up in a browser from preview
     def deliver
-      File.open(file_path, 'w') { | file | file.write(rendered_content) }
+      File.open(file_path, 'w') { |file| file.write(rendered_content) }
       Launchy.open("file:///#{URI.parse(file_path)}")
     end
 
@@ -39,10 +38,10 @@ module NotificationsOpener
     end
 
     def template
-      File.read(File.expand_path("../message.html.erb", __FILE__))
+      File.read(File.expand_path('../message.html.erb', __FILE__))
     end
-    
-    def get_file_path
+
+    def generate_file_path
       location + '/' + SecureRandom.hex + '.html'
     end
   end
