@@ -4,6 +4,8 @@
 
 Blocks SMSs from being delivered in development. Instead opens a preview in the browser by intercepting the request to the configured SMS API.
 
+
+![alt tag](https://cloud.githubusercontent.com/assets/4833588/17463047/cabef4a2-5cdb-11e6-8117-f2a27c71c54c.png)
 ## Installation
 
 Add this line to your application's Gemfile:
