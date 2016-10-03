@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type">
+    <title>Notifications Opener</title>
+
+    <style type="text/css">
+      body {
+        font-family: Arial;
+        font-weight: 100;
+      }
+      #container {
+        margin: 10px auto;
+        position: relative;
+      }
+      #screen-head {
+        text-align: center;
+        font-weight: 100;
+        opacity: 0.5;
+      }
+      #phone {
+        width: 300px;
+        height: 530px;
+        border: 10px solid #333;
+        border-top-width: 50px;
+        border-bottom-width: 50px;
+        border-radius: 15px;
+        position: relative;
+        top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        background: #111;
+      }
+      #text-container {
+        color: white;
+        background: #111;
+        border-radius: 3px;
+        padding: 10px;
+        margin: 10px;
+        border-bottom: 1px solid #222;
+      }
+      #message-content {
+        font-size: 11px;
+      }
+      #title-content {
+        opacity: 0.5;
+        font-size: 13px;
+      }
+      .text-center {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h1 id="screen-head">Android/GCM Notification</h1>
+      <div id="phone">
+        <div id="text-container">
+          <div id="title-content">
+            <%= title %>
+          </div><br>
+          <div id="message-content">
+            <%= message %>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="text-center">
+        <p><strong>Configuration Hash</strong></p>
+        <%= config %>
+      </div>
+      <div class="text-center">
+        <p><strong>Params Hash</strong></p>
+        <%= params %>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      /*! srcdoc-polyfill - v0.1.1 - 2013-03-01
+      * http://github.com/jugglinmike/srcdoc-polyfill/
+      * Copyright (c) 2013 Mike Pennisi; Licensed MIT */
+      (function(t,e){var c,n,o=t.srcDoc,r=!!("srcdoc"in e.createElement("iframe")),i={compliant:function(t,e){e&&t.setAttribute("srcdoc",e)},legacy:function(t,e){var c;t&&t.getAttribute&&(e?t.setAttribute("srcdoc",e):e=t.getAttribute("srcdoc"),e&&(c="javascript: window.frameElement.getAttribute('srcdoc');",t.setAttribute("src",c),t.contentWindow&&(t.contentWindow.location=c)))}},s=t.srcDoc={set:i.compliant,noConflict:function(){return t.srcDoc=o,s}};if(!r)for(s.set=i.legacy,n=e.getElementsByTagName("iframe"),c=n.length;c--;)s.set(n[c])})(this,this.document);
+    </script>
+  </body>
+</html>

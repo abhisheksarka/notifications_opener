@@ -12,11 +12,13 @@ module NotificationsOpener
   # specified URL
   class Interceptor
     attr_accessor :config,
-                  :response_handler
+                  :response_handler,
+                  :type
 
-    def initialize(config)
+    def initialize(config, type)
       @config = config
-      @response_handler = ResponseHandler.new(config)
+      @type = type
+      @response_handler = ResponseHandler.new(config, type)
     end
 
     ##

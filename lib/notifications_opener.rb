@@ -1,5 +1,5 @@
 require "notifications_opener/version"
-require "notifications_opener/message"
+require "notifications_opener/handler/handler"
 require "notifications_opener/response_handler"
 require "notifications_opener/interceptor"
 require 'fileutils'
@@ -14,11 +14,11 @@ module NotificationsOpener
   # * from_key_name - The parameter name you pass to the SMS API that identifies the sender
   # * to_key_name - The parameter name you pass to the SMS API that identifies the receiver
   # * message_key_name - The parameter name you pass to the SMS API that identifies the message
-  def self.configure
+  def self.configure(type=:sms)
     c = { }
     yield(c)
     create_storage_directory(c)
-    ins = Interceptor.new(c)
+    ins = Interceptor.new(c, type)
     ins.intercept_and_redirect_to_rack_app
     ins
   end
