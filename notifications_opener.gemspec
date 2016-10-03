@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'httparty'
 
-  spec.add_dependency 'webmock', '>= 1.0'
+  spec.add_dependency 'webmock', '>= 2.1'
   spec.add_dependency 'rack'
   spec.add_dependency 'launchy', '~> 2.2'
 end
